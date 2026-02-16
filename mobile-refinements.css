@@ -1,0 +1,103 @@
+/* =============================================
+   MOBILE VIEW REFINEMENTS - Custom Adjustments
+   ============================================= */
+
+/* 1. Hide social buttons */
+.socials {
+    display: none !important;
+}
+
+/* 2. Mobile-only line breaks */
+.mobileBreak {
+    display: none;
+}
+
+.mobileBreak2 {
+    display: none;
+}
+
+@media (max-width: 560px) {
+    .mobileBreak {
+        display: inline;
+    }
+
+    .mobileBreak2 {
+        display: inline;
+    }
+
+    /* 3. Call button below submit button in section 1 */
+    .hero-actions {
+        flex-direction: column-reverse !important;
+        gap: 12px !important;
+    }
+
+    .callBtn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* 4. Increase section 2 (Features) card image size by 30% */
+    .featureIcon {
+        width: 78px !important;
+        /* 60px * 1.3 */
+        height: 78px !important;
+    }
+
+    /* 5. Remove section border lines for seamless merging */
+    .featuresSection,
+    .iitSection,
+    .achSection,
+    .directorSection,
+    .awardsSection,
+    .infraSection,
+    .visitSection,
+    .limitedSection {
+        border-top: none !important;
+        border-bottom: none !important;
+    }
+
+    /* 7. Increase left/right margin in Director section text (mobile) */
+    .directorPara {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* 8. Right-align ~Shiv Ram signature */
+    .directorSign {
+        text-align: right !important;
+        padding-right: 20px !important;
+    }
+
+    .directorSignText {
+        display: inline-block;
+        text-align: right;
+    }
+
+    /* 9. Apply same margin to World Class Facilities text */
+    .infraSub {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* 10. Left-align last section content below heading */
+    .limitedLeft {
+        text-align: left !important;
+    }
+
+    .limitedSideTitle {
+        text-align: left !important;
+    }
+
+    .limitedContacts {
+        align-items: flex-start !important;
+    }
+
+    .limitedContactRow {
+        justify-content: flex-start !important;
+        text-align: left !important;
+    }
+
+    .limitedContactText {
+        text-align: left !important;
+    }
+}

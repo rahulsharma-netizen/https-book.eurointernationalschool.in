@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=5" />
+  <title>Euro International School - First Futuristic CBSE School</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com   ">
+  <link rel="preconnect" href="https://fonts.gstatic.com   " crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400   ;500;600;700;800&family=Cinzel:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com   "></script>
+
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Lenis smooth scrolling -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js   "></script>
+</head>
+
+<body class="bg-white text-slate-900 antialiased overflow-x-hidden">
+  <!-- Mobile-Optimized Sticky Header -->
+  <header class="hero-header safe-top">
+    <div class="heroContainer">
+      <div class="flex items-center justify-between pt-4 md:pt-6">
+        <a href="#top" class="flex items-start">
+          <img src="./assets/logo.png" alt="Logo" class="hero-logo h-10 md:h-14" />
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex gap-6 text-white font-medium items-center">
+          <a href="#features" class="hover:text-orange-400 transition">Features</a>
+          <a href="#achievements" class="hover:text-orange-400 transition">Achievements</a>
+          <a href="#director" class="hover:text-orange-400 transition">Vision</a>
+          <a href="#campusFacilities" class="hover:text-orange-400 transition">Facilities</a>
+          <a href="#limitedSeats" class="bg-orange-500 px-4 py-2 rounded-lg hover:bg-orange-400 transition">Enquire
+            Now</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 1 (HERO) -->
+  <section id="top" class="hero">
+    <div class="hero-bg hero-bg--base" aria-hidden="true"></div>
+    <div class="hero-bg hero-bg--reveal" aria-hidden="true" id="heroReveal"></div>
+    <div class="hero-blue" aria-hidden="true"></div>
+
+    <div class="heroContainer hero-inner relative z-10">
+      <div class="hero-grid">
+        <!-- Left content -->
+        <div class="hero-left">
+          <div class="hero-bottom">
+            <h1 class="hero-title text-center md:text-left">Give <span style="color:#f67b1b">Your
+                Child</span><br>Education They Deserve</h1>
+          </div>
+        </div>
+
+        <!-- Right form -->
+        <div class="hero-right px-2 sm:px-0">
+          <form id="enquiryForm" class="enquiry-card enquiryFormLike w-full max-w-md mx-auto md:mx-0"
+            autocomplete="off">
+            <input class="formFieldLike touch-target" type="text" name="parentName" placeholder="Parent Name"
+              required />
+            <input class="formFieldLike touch-target" type="tel" name="phone" inputmode="tel" placeholder="Phone Number"
+              pattern="[0-9]{10}" required />
+
+            <div class="custom-select-container formSelectLike">
+              <div class="select-trigger touch-target" role="button" tabindex="0" aria-expanded="false">
+                <span class="triggerText is-placeholder">Admission Wanted in Class</span>
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg   " fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              <div class="options-menu" data-lenis-prevent>
+                <div class="option" data-value="Nursery">Nursery</div>
+                <div class="option" data-value="LKG">LKG</div>
+                <div class="option" data-value="UKG">UKG</div>
+                <div class="option" data-value="Class 1">Class 1</div>
+                <div class="option" data-value="Class 2">Class 2</div>
+                <div class="option" data-value="Class 3">Class 3</div>
+                <div class="option" data-value="Class 4">Class 4</div>
+                <div class="option" data-value="Class 5">Class 5</div>
+                <div class="option" data-value="Class 6">Class 6</div>
+                <div class="option" data-value="Class 7">Class 7</div>
+                <div class="option" data-value="Class 8">Class 8</div>
+                <div class="option" data-value="Class 9">Class 9</div>
+                <div class="option" data-value="Class 10">Class 10</div>
+                <div class="option" data-value="Class 11">Class 11</div>
+                <div class="option" data-value="Class 12">Class 12</div>
+              </div>
+              <input type="hidden" name="admission_class" value="" />
+            </div>
+
+            <div class="custom-select-container formSelectLike">
+              <div class="select-trigger touch-target" role="button" tabindex="0" aria-expanded="false">
+                <span class="triggerText is-placeholder">City</span>
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg   " fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              <div class="options-menu" data-lenis-prevent>
+                <div class="option" data-value="Sikar">Sikar City</div>
+                <div class="option" data-value="Neem Ka Thana">Within 10km of Sikar City</div>
+                <div class="option" data-value="Fatehpur">Sikar District</div>
+              </div>
+              <input type="hidden" name="city" value="" />
+            </div>
+
+            <button type="submit" class="submitLike touch-target">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="mt-6 md:mt-5 flex flex-wrap items-center justify-center md:justify-start gap-1 md:gap-2">
+        <a href="tel:+917009270097" class="call-btn text-sm md:text-base px-4 py-3 touch-target">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3 5.18 2 2 0 0 1 5.11 3h3a2 2 0 0 1 2 1.72c.12.86.31 1.7.57 2.5a2 2 0 0 1-.45 2.11L9.09 10.91a16 16 0 0 0 4 4l1.58-1.14a2 2 0 0 1 2.11-.45c.8.26 1.64.45 2.5.57A2 2 0 0 1 22 16.92z" />
+            </svg>
+          </span>
+          Call Now +91 7009270097
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 (FEATURES) -->
+  <section id="features" class="featuresSection">
+    <div class="featuresWrap">
+      <h2 class="featuresHeading scroll-animate fade-up">
+        WHAT MAKES US THE<br>
+        <span class="featuresAccent">FIRST FUTURISTIC SCHOOL</span>
+      </h2>
+
+      <p class="featuresSub scroll-animate fade-up delay-1">
+        At Euro International School, we aim to prepare your child for the future.
+      </p>
+
+      <div class="featuresGrid">
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/Coding.png" alt="Coding icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">Coding<br>Curriculum</h3>
+            <p class="featureMeta">10+ International Coders</p>
+            <p class="featureDesc">Euro introduced coding in 2016, becoming the first school in Sikar to do so.</p>
+          </div>
+        </article>
+
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/Financial Literacy.png" alt="Financial Literacy icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">Financial<br>Literacy</h3>
+            <p class="featureMeta">Weekly Finance Classes</p>
+            <p class="featureDesc">Practical money skills: saving, budgeting, investing &amp; real-life finance habits.
+            </p>
+          </div>
+        </article>
+
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/Parenting Awareness.png" alt="Parenting Awareness icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">Parenting<br>Awareness</h3>
+            <p class="featureMeta">60+ Parenting Webinars</p>
+            <p class="featureDesc">Regular sessions with experts to help parents support learning &amp; behavior.</p>
+          </div>
+        </article>
+
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/Entrepreneurship Curriculum.png" alt="Entrepreneurship icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">Entrepreneurship<br>Curriculum</h3>
+            <p class="featureMeta">3 Startups From Euro</p>
+            <p class="featureDesc">Build founders' mindset via projects, pitching, leadership &amp; real execution.</p>
+          </div>
+        </article>
+
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/CBSE Toppers.png" alt="CBSE Toppers icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">Exceptional<br>Academics</h3>
+            <p class="featureMeta">CBSE State Toppers</p>
+            <p class="featureDesc">Strong foundation with structured practice, doubt-solving &amp; mentorship.</p>
+          </div>
+        </article>
+
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/Finland Based Pre-School.png" alt="Finland Preschool icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">Finland<br>Model Preschool</h3>
+            <p class="featureMeta">World's Best Education Model</p>
+            <p class="featureDesc">Play-based learning, independence, creativity &amp; holistic development.</p>
+          </div>
+        </article>
+
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/National Level Sports.png" alt="Sports icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">National Level<br>Sports Training</h3>
+            <p class="featureMeta">2 World Cup Champions</p>
+            <p class="featureDesc">Professional coaching, discipline, fitness &amp; competitive exposure.</p>
+          </div>
+        </article>
+
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/Counselling Psychologists.png" alt="Counselling icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">Student<br>Mental Wellbeing</h3>
+            <p class="featureMeta">2 Full-Time Psychologists</p>
+            <p class="featureDesc">Emotional wellbeing support, behaviour guidance &amp; parent counselling.</p>
+          </div>
+        </article>
+
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/Personality Development Classes.png" alt="Career Counselling icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">Career<br>Counselling</h3>
+            <p class="featureMeta">Personalized Career Roadmap</p>
+            <p class="featureDesc">Strength-based roadmap, aptitude alignment &amp; goal-based planning.</p>
+          </div>
+        </article>
+
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/Digital Library.png" alt="Skill Curriculum icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">Skill<br>Curriculum</h3>
+            <p class="featureMeta">24+ Essential Skills</p>
+            <p class="featureDesc">Learn modern skills with hands-on projects and measurable progress.</p>
+          </div>
+        </article>
+
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/Foreign University.png" alt="Foreign Universities icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">Foreign<br>Universities</h3>
+            <p class="featureMeta">Global Admissions Guidance</p>
+            <p class="featureDesc">Profile building, mentorship, counselling &amp; university preparation.</p>
+          </div>
+        </article>
+
+        <article class="featureCard">
+          <div class="featureIcon">
+            <img src="./assets/futuristic icons/Competitive Exams.png" alt="Growth Assessment icon" />
+          </div>
+          <div class="featureContent">
+            <h3 class="featureTitle">Growth<br>Assessment</h3>
+            <p class="featureMeta">Comprehensive Student Insights</p>
+            <p class="featureDesc">Track learning, skills &amp; behavior with a complete progress system.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="featuresCta">
+        <a href="#" class="learnMoreBtn">APPLY NOW!</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IITIANS SECTION -->
+  <section id="iitians" class="iitiansSection">
+    <div class="iitiansInner">
+      <div class="iitiansImageWrap">
+        <img src="./assets/iitians.png" alt="Transforming Education with IITians" class="iitiansImage"
+          draggable="false" />
+        <span class="iitiansShield" aria-hidden="true"></span>
+      </div>
+      <div class="iitiansCta scroll-animate fade-up">
+        <a class="iitiansBtn" href="#limitedSeats">APPLY NOW!</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMIC ACHIEVERS SECTION -->
+  <section id="academicAchievers" class="academicSection">
+    <span class="academicStar academicStar--tl" aria-hidden="true">✦</span>
+    <span class="academicStar academicStar--tr" aria-hidden="true">✦</span>
+    <span class="academicStar academicStar--bl" aria-hidden="true">✦</span>
+
+    <div class="academicSideText" aria-hidden="true">EUROITES</div>
+
+    <div class="academicInner">
+      <h2 class="academicTitle scroll-animate fade-up">Academic <br>Achievers</h2>
+      <p class="academicSub scroll-animate fade-up delay-1">
+
+      </p>
+
+      <div class="academicGrid">
+        <div class="academicImageWrap scroll-animate fade-up delay-2">
+          <img src="./assets/topper-state.jpg" alt="Bhumi Modi - CBSE State Topper" class="academicImg"
+            draggable="false" />
+          <span class="academicImgShield" aria-hidden="true"></span>
+        </div>
+        <div class="academicImageWrap scroll-animate fade-up delay-3">
+          <img src="./assets/topper-commerce.jpg" alt="Riya Arora - Commerce District Topper" class="academicImg"
+            draggable="false" />
+          <span class="academicImgShield" aria-hidden="true"></span>
+        </div>
+        <div class="academicImageWrap academicImageWrap--stats scroll-animate fade-up delay-4">
+          <div class="statsBlueCard">
+            <img src="./assets/stats-grades.jpg" alt="Grade Statistics" class="academicImg" draggable="false" />
+            <span class="academicImgShield" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="academicCta scroll-animate fade-up delay-5">
+        <a class="academicBtn" href="#limitedSeats">APPLY NOW!</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 (ACHIEVEMENTS) -->
+  <section id="achievements" class="achSection">
+    <div class="achHeader">
+      <h2 class="achTitle">
+        <span class="achTitleLine1">Our Students Are Achieving</span>
+        <span class="achTitleLine2"><span> Success In Every Field</span></span>
+      </h2>
+    </div>
+
+    <div class="achStrip">
+      <article class="achItem" style="--open:#7f1c42; --img:url('./assets/achievements/ach-foreign.jpg');">
+        <div class="achTint" aria-hidden="true"></div>
+        <div class="achText">
+          <h3 class="achHeading">Foreign University Admissions</h3>
+          <p class="achDesc">Our students are enrolled in the some of the world’s top universities.</p>
+        </div>
+      </article>
+
+      <article class="achItem" style="--open:#5e755c; --img:url('./assets/achievements/ach-board.jpg');">
+        <div class="achTint" aria-hidden="true"></div>
+        <div class="achText">
+          <h3 class="achHeading">Board<br>Results</h3>
+          <p class="achDesc">Consistently producing district and state toppers.</p>
+        </div>
+      </article>
+
+      <article class="achItem" style="--open:#f3992d; --img:url('./assets/achievements/ach-sports.jpg');">
+        <div class="achTint" aria-hidden="true"></div>
+        <div class="achText">
+          <h3 class="achHeading">Sports Achievements</h3>
+          <p class="achDesc">Our students have competed and won at both national and international levels.</p>
+        </div>
+      </article>
+
+      <article class="achItem" style="--open:#413c68; --img:url('./assets/achievements/ach-coding.jpg');">
+        <div class="achTint" aria-hidden="true"></div>
+        <div class="achText">
+          <h3 class="achHeading">Coding Achievements</h3>
+          <p class="achDesc">Our students have won international hackathons and coding competitions.</p>
+        </div>
+      </article>
+
+      <article class="achItem" style="--open:#1e282e; --img:url('./assets/achievements/ach-alumni.jpg');">
+        <div class="achTint" aria-hidden="true"></div>
+        <div class="achText">
+          <h3 class="achHeading">Alumni<br>Startups</h3>
+          <p class="achDesc">Our students have turned ideas into successful startups.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECTION 4 (STATS) -->
+  <section id="stats" class="statsSection">
+    <div class="statsWrap">
+      <div class="statsGrid">
+        <div class="statItem">
+          <div class="statValue">23+</div>
+          <div class="statLabel">Years of Excellence</div>
+        </div>
+
+        <div class="statItem">
+          <div class="statValue">1:13</div>
+          <div class="statLabel">Teacher-Student Ratio</div>
+        </div>
+
+        <div class="statItem">
+          <div class="statValue">150+</div>
+          <div class="statLabel">Teachers</div>
+        </div>
+
+        <div class="statItem">
+          <div class="statValue">2000+</div>
+          <div class="statLabel">Students</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTOR VISION SECTION -->
+  <section id="director" class="directorSection">
+    <span class="directorStar directorStar--tr" aria-hidden="true">✦</span>
+    <span class="directorStar directorStar--bl" aria-hidden="true">✦</span>
+
+    <div class="directorInner">
+      <div class="directorGrid">
+        <div class="directorCopy">
+          <h2 class="directorTitle">
+            <span class="directorKicker">Vision of a</span>
+            <span class="directorMain">
+              <span class="directorMainBold">Futuristic</span>
+              <span class="directorMainLight">Founder</span>
+            </span>
+          </h2>
+
+          <p class="directorPara directorQuote">
+            "Excellence is the need of the hour, and we cannot deny the fact that it can only be achieved through
+            continuous effort, regular practice, and creative thinking.
+          </p>
+
+          <p class="directorPara">
+            With this in mind, we at Euro strive to provide the right atmosphere—one that nurtures positive thoughts and
+            supports the all-round development of every child entrusted to our care.
+          </p>
+
+          <p class="directorPara">
+            Today, we are proud to be recognized as one of Rajasthan’s leading schools, and we sincerely acknowledge the
+            love and trust we have received from all our parents and caregivers.
+          </p>
+
+          <p class="directorPara">
+            May we support more, evolve more, and love more with each passing day."
+          </p>
+
+          <p class="directorSign"><span class="directorSignText">~Shiv Ram </span></p>
+        </div>
+
+        <div class="directorPhoto">
+          <div class="directorPhotoFrame">
+            <img src="./assets/director.jpg" alt="Director" />
+          </div>
+        </div>
+      </div>
+
+      <div class="directorCta">
+        <a class="directorBtn" href="#limitedSeats">APPLY NOW!</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS & ACHIEVEMENTS -->
+  <section id="awards" class="awardsSection">
+    <div class="awardsInner">
+      <h2 class="awardsTitle">Awards &amp; Achievements</h2>
+
+      <div class="awardsShell" aria-roledescription="carousel">
+        <button class="awardsArrow awardsArrow--prev" type="button" aria-label="Previous award">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+
+        <div class="awardsCard">
+          <div class="awardsViewport" data-lenis-prevent>
+            <div class="awardsTrack">
+              <article class="awardSlide">
+                <div class="awardText">
+                  <h3 class="awardHeading">
+                    Rajiv Gandhi<br>
+                    Innovation Award<br>
+                    <span>by Government of Rajasthan</span>
+                  </h3>
+                </div>
+                <div class="awardMedia">
+                  <div class="awardMediaFrame">
+                    <img src="./assets/award1.jpg" alt="Rajiv Gandhi Innovation Award" draggable="false" />
+                    <span class="awardSwipeShield" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="awardSlide">
+                <div class="awardText">
+                  <h3 class="awardHeading">
+                    Best School<br>
+                    in North India<br>
+                    <span>by Education Today</span>
+                  </h3>
+                </div>
+                <div class="awardMedia">
+                  <div class="awardMediaFrame">
+                    <img src="./assets/award2.jpg" alt="Best School in North India" draggable="false" />
+                    <span class="awardSwipeShield" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="awardSlide">
+                <div class="awardText">
+                  <h3 class="awardHeading">
+                    Best Futuristic School<br>
+                    in Rajasthan<br>
+                    <span>by EW India</span>
+                  </h3>
+                </div>
+                <div class="awardMedia">
+                  <div class="awardMediaFrame">
+                    <img src="./assets/award3.jpg" alt="Best Futuristic School in Rajasthan" draggable="false" />
+                    <span class="awardSwipeShield" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <button class="awardsArrow awardsArrow--next" type="button" aria-label="Next award">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M9 6l6 6-6 6" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORLD CLASS FACILITIES -->
+  <section id="campusFacilities" class="infraSection">
+    <div class="infraWrap">
+      <header class="infraHead">
+        <h2 class="infraHeading">WORLD CLASS FACILITIES</h2>
+        <p class="infraSub">
+          Euro International School offers a wide range of exceptional facilities designed to enrich every aspect of
+          your child's academic journey and holistic growth.
+        </p>
+      </header>
+
+      <div class="infraGrid">
+        <article class="infraCard" tabindex="0" style="--img:url('./assets/computer-lab.jpg');">
+          <h3 class="infraLabel">Computer Lab</h3>
+          <div class="infraInfo">
+            <h4 class="infraInfoTitle">Computer Lab</h4>
+            <p class="infraInfoDesc">Equipping students with essential digital skills through hands-on learning.</p>
+          </div>
+        </article>
+
+        <article class="infraCard" tabindex="0" style="--img:url('./assets/playground.jpg');">
+          <h3 class="infraLabel">Playground</h3>
+          <div class="infraInfo">
+            <h4 class="infraInfoTitle">Playground</h4>
+            <p class="infraInfoDesc">Encouraging physical fitness and training students for national level competitions.
+            </p>
+          </div>
+        </article>
+
+        <article class="infraCard" tabindex="0" style="--img:url('./assets/science-lab.jpg');">
+          <h3 class="infraLabel">Science Lab</h3>
+          <div class="infraInfo">
+            <h4 class="infraInfoTitle">Science Lab</h4>
+            <p class="infraInfoDesc">Inspiring curiosity and innovation with practical learning in the laboratories.</p>
+          </div>
+        </article>
+
+        <article class="infraCard" tabindex="0" style="--img:url('./assets/digital-library.jpg');">
+          <h3 class="infraLabel">Digital Library</h3>
+          <div class="infraInfo">
+            <h4 class="infraInfoTitle">Digital Library</h4>
+            <p class="infraInfoDesc">Access a vast collection of e-books and resources for endless learning
+              opportunities.</p>
+          </div>
+        </article>
+
+        <article class="infraCard" tabindex="0" style="--img:url('./assets/finland-model-preschool.jpg');">
+          <h3 class="infraLabel">Finland Model Preschool</h3>
+          <div class="infraInfo">
+            <h4 class="infraInfoTitle">Finland Model Preschool</h4>
+            <p class="infraInfoDesc">Adopting Finland's approach for playful, activity-based learning during early
+              childhood.</p>
+          </div>
+        </article>
+
+        <article class="infraCard" tabindex="0" style="--img:url('./assets/dhamma-hall.jpg');">
+          <h3 class="infraLabel">Dhamma Hall</h3>
+          <div class="infraInfo">
+            <h4 class="infraInfoTitle">Dhamma Hall</h4>
+            <p class="infraInfoDesc">A hall specifically dedicated to meditation, mindfulness and spirituality.</p>
+          </div>
+        </article>
+
+        <article class="infraCard" tabindex="0" style="--img:url('./assets/smart-classrooms.jpg');">
+          <h3 class="infraLabel">Smart Classrooms</h3>
+          <div class="infraInfo">
+            <h4 class="infraInfoTitle">Smart Classrooms</h4>
+            <p class="infraInfoDesc">Cutting-edge classroom technology for an engaging and innovative education
+              experience.</p>
+          </div>
+        </article>
+
+        <article class="infraCard" tabindex="0" style="--img:url('./assets/world-clas-transport.jpg');">
+          <h3 class="infraLabel">World <br class="mobileBreak">Class Transport</h3>
+          <div class="infraInfo">
+            <h4 class="infraInfoTitle">World Class <br class="mobileBreak">Transport</h4>
+            <p class="infraInfoDesc">Safe, efficient, and hassle-free transportation, ensuring a smooth journey every
+              day.</p>
+          </div>
+        </article>
+
+        <article class="infraCard" tabindex="0" style="--img:url('./assets/sports-complex.jpg');">
+          <h3 class="infraLabel">Sports Complex</h3>
+          <div class="infraInfo">
+            <h4 class="infraInfoTitle">Sports Complex</h4>
+            <p class="infraInfoDesc">Train like a champion with top-tier sports facilities designed for excellence and
+              growth.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="infraCta">
+        <a class="infraBtn" href="#limitedSeats">APPLY NOW!</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT US -->
+  <section id="visit" class="visitSection">
+    <div class="visitInner">
+      <h2 class="visitTitle">Visit Us</h2>
+      <p class="visitSub">
+        You are always welcome to visit our serene campus, located at the periphery of the Sikar city.
+      </p>
+
+      <div class="visitMapWrap">
+        <iframe class="visitMap" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Euro%20International%20School%20Sikar&output=embed   "
+          aria-label="Euro International School Location Map"></iframe>
+      </div>
+
+      <div class="visitCta">
+        <a class="visitBtn" href="https://maps.app.goo.gl/4sJRYk4oGviKYwNE8   " target="_blank" rel="noopener">
+          Google Map Directions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIMITED SEATS -->
+  <section id="limitedSeats" class="limitedSection">
+    <div class="limitedInner">
+      <h2 class="limitedTopTitle">Your Child’s Second Home</h2>
+
+      <div class="limitedGrid">
+        <div class="limitedLeft">
+          <h3 class="limitedSideTitle">
+            BOOK A SEAT FOR <br>
+            YOUR CHILD TODAY.
+          </h3>
+
+          <div class="limitedContacts">
+            <a class="limitedContactRow" href="tel:+917009270097">
+              <span class="limitedIcon" aria-hidden="true">
+                <img src="./assets/phone.png" alt="" style="width: 24px; height: 24px;" />
+              </span>
+              <span class="limitedContactText">+91-7009270097</span>
+            </a>
+
+            <a class="limitedContactRow" href="mailto:admissions@eurointernationalschool.in">
+              <span class="limitedIcon" aria-hidden="true">
+                <img src="./assets/mail-24.png" alt="" style="width: 20px; height: 20px;" />
+              </span>
+              <span class="limitedContactText">admissions@eurointernationalschool.in</span>
+            </a>
+
+            <div class="limitedContactRow">
+              <span class="limitedIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M12 21s-7-4.4-7-11a7 7 0 1 1 14 0c0 6.6-7 11-7 11z" />
+                  <path d="M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+                </svg>
+              </span>
+              <span class="limitedContactText">
+                Chandpura Chauraha, Near Todi Nagar Bajaj Gram Sanwali, Sikar, Rajasthan
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="limitedDivider" aria-hidden="true"></div>
+
+        <div class="limitedRight">
+          <form class="enquiry-card enquiryFormLike limitedForm" autocomplete="off">
+            <input class="formFieldLike touch-target" type="text" name="parentName" placeholder="Parent Name"
+              required />
+            <input class="formFieldLike touch-target" type="tel" name="phone" inputmode="tel" placeholder="Phone Number"
+              pattern="[0-9]{10}" required />
+
+            <div class="custom-select-container formSelectLike">
+              <div class="select-trigger touch-target" role="button" tabindex="0" aria-expanded="false">
+                <span class="triggerText is-placeholder">Admission Wanted in Class</span>
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg   " fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              <div class="options-menu" data-lenis-prevent>
+                <div class="option" data-value="Nursery">Nursery</div>
+                <div class="option" data-value="LKG">LKG</div>
+                <div class="option" data-value="UKG">UKG</div>
+                <div class="option" data-value="Class 1">Class 1</div>
+                <div class="option" data-value="Class 2">Class 2</div>
+                <div class="option" data-value="Class 3">Class 3</div>
+                <div class="option" data-value="Class 4">Class 4</div>
+                <div class="option" data-value="Class 5">Class 5</div>
+                <div class="option" data-value="Class 6">Class 6</div>
+                <div class="option" data-value="Class 7">Class 7</div>
+                <div class="option" data-value="Class 8">Class 8</div>
+                <div class="option" data-value="Class 9">Class 9</div>
+                <div class="option" data-value="Class 10">Class 10</div>
+                <div class="option" data-value="Class 11">Class 11</div>
+                <div class="option" data-value="Class 12">Class 12</div>
+              </div>
+              <input type="hidden" name="admission_class" value="" />
+            </div>
+
+            <div class="custom-select-container formSelectLike">
+              <div class="select-trigger touch-target" role="button" tabindex="0" aria-expanded="false">
+                <span class="triggerText is-placeholder">City</span>
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg   " fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              <div class="options-menu" data-lenis-prevent>
+                <div class="option" data-value="Sikar">Sikar</div>
+                <div class="option" data-value="Neem Ka Thana">Neem Ka Thana</div>
+                <div class="option" data-value="Fatehpur">Fatehpur</div>
+                <div class="option" data-value="Jhunjhunu">Jhunjhunu</div>
+              </div>
+              <input type="hidden" name="city" value="" />
+            </div>
+
+            <button type="submit" class="submitLike touch-target">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main JS File -->
+  <!-- Popup (replaces alert) -->
+  <div id="uiPopup" class="uiPopup hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="uiPopup__backdrop" data-popup-close></div>
+
+    <div class="uiPopup__card" role="document">
+      <button class="uiPopup__x" type="button" aria-label="Close" data-popup-close>✕</button>
+
+      <div class="uiPopup__icon" aria-hidden="true">
+        <span id="uiPopupIconSuccess">✅</span>
+        <span id="uiPopupIconError" class="hidden">⚠️</span>
+      </div>
+
+      <h3 class="uiPopup__title" id="uiPopupTitle">Done</h3>
+      <p class="uiPopup__msg" id="uiPopupMsg">Message</p>
+
+      <button class="uiPopup__btn" type="button" data-popup-close>OK</button>
+    </div>
+  </div>
+
+
+  <!-- Animated Scroll Progress Bar -->
+  <div class="scroll-progress">
+    <div class="scroll-progress-bar"></div>
+  </div>
+
+  <!-- Scroll Animation Placeholder -->
+  <div class="scroll-animation-overlay"></div>
+
+  <script src="./main.js"></script>
+</body>
+
+</html>
