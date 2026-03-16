@@ -141,28 +141,23 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (prefersReducedMotion) {
-    // Skip animations for users who prefer reduced motion
     animatedElements.forEach(el => {
       el.classList.add('animate-in');
     });
     return;
   }
 
-  // Create observer with threshold for triggering animations
   const observerOptions = {
-    root: null, // viewport
-    rootMargin: '0px 0px -80px 0px', // trigger slightly before element is fully visible
-    threshold: 0.15 // trigger when 15% of element is visible
+    root: null,
+    rootMargin: '0px 0px -80px 0px',
+    threshold: 0.15
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Element is entering the viewport - animate in
         entry.target.classList.add('animate-in');
       } else {
-        // Element is leaving the viewport - remove animation for re-trigger on scroll back
-        // Only remove if element has data-animate-once not set
         if (!entry.target.hasAttribute('data-animate-once')) {
           entry.target.classList.remove('animate-in');
         }
@@ -170,12 +165,10 @@
     });
   }, observerOptions);
 
-  // Observe all animated elements
   animatedElements.forEach(el => {
     observer.observe(el);
   });
 
-  // Expose function to add new elements dynamically
   window.addScrollAnimation = function (element) {
     if (element && element.classList.contains('scroll-animate')) {
       observer.observe(element);
@@ -186,13 +179,11 @@
 
 // =========================
 // CUSTOM POPUP (Replaces alert)
-// - If popup HTML/CSS not present, it auto-injects minimal UI.
 // =========================
 (function initPopup() {
   function injectPopupIfMissing() {
     if (document.getElementById("uiPopup")) return;
 
-    // Minimal styles injection (safe even if you already added CSS)
     if (!document.getElementById("uiPopupStyles")) {
       const style = document.createElement("style");
       style.id = "uiPopupStyles";
@@ -298,7 +289,6 @@
     const anyOpen = !!document.querySelector(".custom-select-container.open");
     if (anyOpen) {
       hero?.classList.add("dropdown-open");
-      // fallback even if CSS not updated
       if (hero) hero.style.zIndex = "999";
     } else {
       hero?.classList.remove("dropdown-open");
@@ -333,7 +323,6 @@
     const spaceBelow = window.innerHeight - rect.bottom - padding;
     const spaceAbove = rect.top - padding;
 
-    // if below space is tight, open upwards
     const shouldOpenUp = spaceBelow < 220 && spaceAbove > spaceBelow;
     if (shouldOpenUp) container.classList.add("open-up");
 
@@ -359,7 +348,6 @@
 
     if (!trigger || !triggerText || !hiddenInput) return;
 
-    // store placeholder once
     if (!triggerText.dataset.placeholder) {
       triggerText.dataset.placeholder = triggerText.textContent.trim();
     }
@@ -390,7 +378,6 @@
       });
     });
 
-    // Keep placement correct while scrolling/resizing (mobile viewport changes)
     window.addEventListener("resize", () => {
       if (container.classList.contains("open")) adjustPlacement(container);
     });
@@ -401,14 +388,12 @@
 
   document.querySelectorAll(".custom-select-container").forEach(setupCustomSelect);
 
-  // One global outside-click close
   document.addEventListener("click", (e) => {
     const openEl = e.target.closest?.(".custom-select-container.open");
-    if (openEl) return; // click inside open dropdown
+    if (openEl) return;
     if (!e.target.closest?.(".custom-select-container")) closeAll(null);
   });
 
-  // Escape closes any open dropdown
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeAll(null);
   });
@@ -416,7 +401,7 @@
 
 
 // =========================
-// BOOK SEAT SCROLL (kept same)
+// BOOK SEAT SCROLL
 // =========================
 (() => {
   const btn = document.getElementById("bookSeatBtn");
@@ -473,7 +458,7 @@ document.querySelectorAll('form').forEach(form => {
 
 
 // =========================
-// AWARDS CAROUSEL (unchanged)
+// AWARDS CAROUSEL
 // =========================
 function initAwardsCarousel() {
   const shell = document.querySelector(".awardsShell");
@@ -530,7 +515,6 @@ function initAwardsCarousel() {
       const x = -index * slideW;
       applyTranslate(x);
       lastTranslate = x;
-      // Double rAF ensures the browser has painted the instant position before re-enabling transition
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setTransition(true);
@@ -694,29 +678,42 @@ document.addEventListener("DOMContentLoaded", initAwardsCarousel);
 // GOOGLE SHEETS + LEADSQUARED INTEGRATION
 // =========================
 const CONFIG = {
-  GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzEVXw1CQDFVIn9DGR_ZyVTMjYm_AzUUPHvl4fiEn6pkg0unVQuVqaqvxNLP-uKSj_lzw/exec   "
+  GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycby4Wh4rt8bhovda5-I6Rh2Jp-ERHIH4aqwrN3-409O_g7wZDnbvmhfPIJmJxbBjMDhC_g/exec"
 };
 
 function getUTMParameters() {
   const params = new URLSearchParams(window.location.search);
   return {
-    utm_source: params.get('utm_source') || '',
-    utm_medium: params.get('utm_medium') || '',
-    utm_campaign: params.get('utm_campaign') || '',
-    utm_adgroup: params.get('utm_adgroup') || params.get('utm_content') || '',
-    utm_ad: params.get('utm_ad') || '',
-    utm_term: params.get('utm_term') || '',
-    utm_content: params.get('utm_content') || '',
-    gclid: params.get('gclid') || '',
-    page_url: window.location.href
+    utm_source:   params.get('utm_source')   || '',
+    utm_medium:   params.get('utm_medium')   || '',
+
+    // ✅ Support both utm_campaign and utm_campaign_id (Google auto-tagging)
+    utm_campaign: params.get('utm_campaign') || params.get('utm_campaign_id') || '',
+    utm_adgroup:  params.get('utm_adgroup')  || params.get('utm_adgroup_id')  || params.get('utm_content') || '',
+    utm_ad:       params.get('utm_ad')       || params.get('utm_ad_id')       || '',
+
+    utm_term:     params.get('utm_term')     || '',
+    utm_content:  params.get('utm_content')  || '',
+    gclid:        params.get('gclid')        || '',
+    page_url:     window.location.href
   };
 }
 
+// ✅ Always prefer fresh UTMs from URL over cached session data
+const freshParams = getUTMParameters();
+const hasFreshUTMs = freshParams.utm_source || freshParams.utm_campaign || freshParams.gclid;
+
 let utmData = {};
-if (sessionStorage.getItem('utm_data')) {
+if (hasFreshUTMs) {
+  // Fresh UTMs in URL — always use and overwrite cache
+  utmData = freshParams;
+  sessionStorage.setItem('utm_data', JSON.stringify(utmData));
+} else if (sessionStorage.getItem('utm_data')) {
+  // No UTMs in URL — use cached (user navigated to another page)
   utmData = JSON.parse(sessionStorage.getItem('utm_data'));
 } else {
-  utmData = getUTMParameters();
+  // No UTMs anywhere
+  utmData = freshParams;
   sessionStorage.setItem('utm_data', JSON.stringify(utmData));
 }
 
@@ -757,7 +754,6 @@ function resetCustomSelects(form) {
     if (hidden) hidden.value = "";
   });
 
-  // remove hero stacking state if present
   const hero = document.querySelector(".hero");
   hero?.classList.remove("dropdown-open");
   if (hero) hero.style.zIndex = "";
@@ -765,6 +761,7 @@ function resetCustomSelects(form) {
 
 // Setup form handlers
 document.addEventListener('DOMContentLoaded', function () {
+
   // HERO FORM
   const heroForm = document.getElementById('enquiryForm');
   if (heroForm) {
@@ -777,13 +774,12 @@ document.addEventListener('DOMContentLoaded', function () {
       submitBtn.disabled = true;
 
       const formData = {
-        parentName: (this.querySelector('input[type="text"]')?.value || "").trim(),
-        phone: (this.querySelector('input[type="tel"]')?.value || "").trim(),
+        parentName:     (this.querySelector('input[type="text"]')?.value || "").trim(),
+        phone:          (this.querySelector('input[type="tel"]')?.value  || "").trim(),
         admissionClass: (this.querySelector('input[name="admission_class"]')?.value || "").trim(),
-        city: (this.querySelector('input[name="city"]')?.value || "").trim()
+        city:           (this.querySelector('input[name="city"]')?.value || "").trim()
       };
 
-      // basic required checks (no alerts)
       if (!formData.admissionClass || !formData.city) {
         window.showPopup?.({
           type: "error",
@@ -832,10 +828,10 @@ document.addEventListener('DOMContentLoaded', function () {
       submitBtn.disabled = true;
 
       const formData = {
-        parentName: (this.querySelector('input[type="text"]')?.value || "").trim(),
-        phone: (this.querySelector('input[type="tel"]')?.value || "").trim(),
+        parentName:     (this.querySelector('input[type="text"]')?.value || "").trim(),
+        phone:          (this.querySelector('input[type="tel"]')?.value  || "").trim(),
         admissionClass: (this.querySelector('input[name="admission_class"]')?.value || "").trim(),
-        city: (this.querySelector('input[name="city"]')?.value || "").trim()
+        city:           (this.querySelector('input[name="city"]')?.value || "").trim()
       };
 
       if (!formData.admissionClass || !formData.city) {
@@ -892,7 +888,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let showIndicatorsTimeout = null;
   let hideIndicatorsTimeout = null;
 
-  // Calculate scroll percentage
   function getScrollPercentage() {
     const winHeight = window.innerHeight;
     const docHeight = document.documentElement.scrollHeight;
@@ -901,19 +896,16 @@ document.addEventListener('DOMContentLoaded', function () {
     return trackLength ? Math.floor((scrollTop / trackLength) * 100) : 0;
   }
 
-  // Update scroll progress bar
   function updateProgressBar() {
     const percentage = getScrollPercentage();
     scrollProgressBar.style.width = `${percentage}%`;
 
-    // Show/hide progress bar based on scroll position
     if (percentage > 2 && percentage < 98) {
       scrollProgress.classList.add('showing');
     } else {
       scrollProgress.classList.remove('showing');
     }
 
-    // Update body classes for top/bottom detection
     if (percentage <= 2) {
       document.body.classList.add('at-top');
       document.body.classList.remove('at-bottom');
@@ -925,15 +917,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Show scroll indicator with animation
   function showScrollIndicator(direction) {
     clearTimeout(hideIndicatorsTimeout);
-
-    // Remove all showing classes first
     scrollUpIndicator.classList.remove('showing');
     scrollDownIndicator.classList.remove('showing');
 
-    // Add showing class to appropriate indicator
     if (direction === 'up') {
       scrollUpIndicator.classList.add('showing');
       scrollDirection = 'up';
@@ -942,27 +930,23 @@ document.addEventListener('DOMContentLoaded', function () {
       scrollDirection = 'down';
     }
 
-    // Auto-hide after delay
     clearTimeout(showIndicatorsTimeout);
     showIndicatorsTimeout = setTimeout(() => {
       hideScrollIndicators();
     }, 1500);
   }
 
-  // Hide scroll indicators
   function hideScrollIndicators() {
     scrollUpIndicator.classList.remove('showing');
     scrollDownIndicator.classList.remove('showing');
   }
 
-  // Handle scroll events
   function handleScroll() {
     const currentScrollY = window.scrollY;
     const scrollDelta = currentScrollY - lastScrollY;
     const currentTime = Date.now();
     const timeDelta = currentTime - lastScrollTime;
 
-    // Only trigger on significant scrolls and with minimum time between triggers
     if (Math.abs(scrollDelta) > 30 && timeDelta > 300) {
       const direction = scrollDelta > 0 ? 'down' : 'up';
       showScrollIndicator(direction);
@@ -974,7 +958,6 @@ document.addEventListener('DOMContentLoaded', function () {
     ticking = false;
   }
 
-  // Throttled scroll handler
   function onScroll() {
     if (!ticking) {
       ticking = true;
@@ -982,63 +965,41 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Add click handlers to scroll indicators
   scrollUpIndicator.addEventListener('click', () => {
-    // Scroll to top smoothly
     if (window.lenis) {
       window.lenis.scrollTo(0, {
         duration: 1.2,
         easing: (t) => 1 - Math.pow(1 - t, 3)
       });
     } else {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // Show feedback
     scrollUpIndicator.classList.add('showing');
     setTimeout(() => scrollUpIndicator.classList.remove('showing'), 1000);
   });
 
   scrollDownIndicator.addEventListener('click', () => {
-    // Scroll to bottom smoothly
     const bottom = document.documentElement.scrollHeight - window.innerHeight;
-
     if (window.lenis) {
       window.lenis.scrollTo(bottom, {
         duration: 1.2,
         easing: (t) => 1 - Math.pow(1 - t, 3)
       });
     } else {
-      window.scrollTo({
-        top: bottom,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: bottom, behavior: 'smooth' });
     }
-
-    // Show feedback
     scrollDownIndicator.classList.add('showing');
     setTimeout(() => scrollDownIndicator.classList.remove('showing'), 1000);
   });
 
-  // Initialize progress bar
   updateProgressBar();
-
-  // Add scroll event listener
   window.addEventListener('scroll', onScroll, { passive: true });
-
-  // Hide indicators on page load after a moment
   window.addEventListener('load', () => {
     setTimeout(hideScrollIndicators, 2000);
     updateProgressBar();
   });
-
-  // Handle resize events
   window.addEventListener('resize', updateProgressBar);
 
-  // Public API for manual control (optional)
   window.scrollGraphics = {
     showUpIndicator: () => showScrollIndicator('up'),
     showDownIndicator: () => showScrollIndicator('down'),
@@ -1047,12 +1008,11 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 })();
 
+
 // =========================
 // CARD MOTION GRAPHICS SYSTEM
 // =========================
-
 (function initCardMotionGraphics() {
-  // Configuration
   const config = {
     tiltIntensity: 15,
     floatIntensity: 20,
@@ -1064,7 +1024,6 @@ document.addEventListener('DOMContentLoaded', function () {
     enableScrollEffects: true
   };
 
-  // State
   let mouseX = 0;
   let mouseY = 0;
   let scrollY = 0;
@@ -1073,7 +1032,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let cards = [];
   let mouseFollower = null;
 
-  // Initialize
   function init() {
     createMouseFollower();
     setupCards();
@@ -1081,18 +1039,14 @@ document.addEventListener('DOMContentLoaded', function () {
     startAnimationLoop();
   }
 
-  // Create mouse follower element
   function createMouseFollower() {
     if (!config.enableMouseEffects) return;
-
     mouseFollower = document.createElement('div');
     mouseFollower.className = 'card-mouse-follower';
     document.body.appendChild(mouseFollower);
   }
 
-  // Setup all cards
   function setupCards() {
-    // Feature cards
     const featureCards = document.querySelectorAll('.featureCard');
     featureCards.forEach((card, index) => {
       cards.push({
@@ -1105,15 +1059,12 @@ document.addEventListener('DOMContentLoaded', function () {
         glow: 0,
         isHovered: false
       });
-
-      // Add hover listeners
       card.addEventListener('mouseenter', () => onCardHover(card, true));
       card.addEventListener('mouseleave', () => onCardHover(card, false));
       card.addEventListener('touchstart', () => onCardHover(card, true), { passive: true });
       card.addEventListener('touchend', () => onCardHover(card, false), { passive: true });
     });
 
-    // Infrastructure cards
     const infraCards = document.querySelectorAll('.infraCard');
     infraCards.forEach((card, index) => {
       cards.push({
@@ -1126,8 +1077,6 @@ document.addEventListener('DOMContentLoaded', function () {
         blur: 0,
         isHovered: false
       });
-
-      // Add hover listeners
       card.addEventListener('mouseenter', () => onCardHover(card, true));
       card.addEventListener('mouseleave', () => onCardHover(card, false));
       card.addEventListener('touchstart', () => onCardHover(card, true), { passive: true });
@@ -1135,46 +1084,33 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Setup event listeners
   function setupEventListeners() {
-    // Mouse movement
     if (config.enableMouseEffects) {
       document.addEventListener('mousemove', onMouseMove);
       document.addEventListener('touchmove', onTouchMove, { passive: true });
-
-      // Section mouse tracking
       document.querySelectorAll('.scroll-motion-section').forEach(section => {
         section.addEventListener('mousemove', onSectionMouseMove);
       });
     }
-
-    // Scroll events
     if (config.enableScrollEffects) {
       window.addEventListener('scroll', onScroll, { passive: true });
     }
-
-    // Window resize
     window.addEventListener('resize', updateCardPositions);
   }
 
-  // Mouse move handler
   function onMouseMove(e) {
     mouseX = e.clientX;
     mouseY = e.clientY;
-
-    // Update mouse follower
     if (mouseFollower) {
       mouseFollower.style.left = `${mouseX}px`;
       mouseFollower.style.top = `${mouseY}px`;
     }
   }
 
-  // Touch move handler
   function onTouchMove(e) {
     if (e.touches.length > 0) {
       mouseX = e.touches[0].clientX;
       mouseY = e.touches[0].clientY;
-
       if (mouseFollower) {
         mouseFollower.style.left = `${mouseX}px`;
         mouseFollower.style.top = `${mouseY}px`;
@@ -1182,86 +1118,55 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Section mouse move handler
   function onSectionMouseMove(e) {
     const section = e.currentTarget;
     const rect = section.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
-
     section.style.setProperty('--mouse-x', `${x}%`);
     section.style.setProperty('--mouse-y', `${y}%`);
   }
 
-  // Scroll handler
   function onScroll() {
     scrollY = window.scrollY;
     isScrolling = true;
-
-    // Update mouse follower opacity
-    if (mouseFollower) {
-      mouseFollower.style.opacity = '0.3';
-    }
-
-    // Clear previous timeout
-    if (scrollTimeout) {
-      clearTimeout(scrollTimeout);
-    }
-
-    // Set timeout to hide effects after scrolling stops
+    if (mouseFollower) mouseFollower.style.opacity = '0.3';
+    if (scrollTimeout) clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
       isScrolling = false;
-      if (mouseFollower) {
-        mouseFollower.style.opacity = '0';
-      }
+      if (mouseFollower) mouseFollower.style.opacity = '0';
     }, 150);
   }
 
-  // Card hover handler
   function onCardHover(card, isHovered) {
     const cardData = cards.find(c => c.element === card);
     if (cardData) {
       cardData.isHovered = isHovered;
-
-      // Show/hide mouse follower
       if (mouseFollower) {
         mouseFollower.style.opacity = isHovered ? '0.5' : '0.3';
       }
     }
   }
 
-  // Update card positions based on mouse and scroll
   function updateCardPositions() {
     cards.forEach(cardData => {
       const card = cardData.element;
       const rect = card.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-
-      // Calculate distance from mouse
       const distanceX = mouseX - centerX;
       const distanceY = mouseY - centerY;
       const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-
-      // Calculate scroll offset
       const scrollOffset = scrollY * config.scrollSensitivity;
 
       if (cardData.type === 'feature') {
-        // Feature card effects
-        let rotationX = 0;
-        let rotationY = 0;
-        let scale = 1;
-        let glow = 0;
-        let shadowY = 0;
+        let rotationX = 0, rotationY = 0, scale = 1, glow = 0, shadowY = 0;
 
-        // Mouse-based rotation
         if (config.enableMouseEffects && distance < 300) {
           const intensity = 1 - (distance / 300);
           rotationX = (distanceY / rect.height) * config.tiltIntensity * intensity;
           rotationY = (distanceX / rect.width) * -config.tiltIntensity * intensity;
         }
-
-        // Hover effects
         if (cardData.isHovered) {
           scale = 1.05;
           glow = config.glowIntensity;
@@ -1269,57 +1174,42 @@ document.addEventListener('DOMContentLoaded', function () {
           rotationX *= 1.5;
           rotationY *= 1.5;
         }
-
-        // Scroll effects
         if (config.enableScrollEffects && isScrolling) {
           rotationX += (scrollOffset / 1000) * 5;
         }
 
-        // Apply transformations
         card.style.setProperty('--card-tilt-x', `${rotationX}deg`);
         card.style.setProperty('--card-tilt-y', `${rotationY}deg`);
         card.style.setProperty('--card-scale', scale);
         card.style.setProperty('--card-glow', glow);
         card.style.setProperty('--card-shadow-y', `${shadowY}px`);
 
-        // Store values
         cardData.rotationX = rotationX;
         cardData.rotationY = rotationY;
         cardData.scale = scale;
         cardData.glow = glow;
 
       } else if (cardData.type === 'infra') {
-        // Infrastructure card effects
-        let floatY = 0;
-        let scale = 1;
-        let brightness = 1;
-        let blur = 0;
+        let floatY = 0, scale = 1, brightness = 1, blur = 0;
 
-        // Mouse-based float
         if (config.enableMouseEffects && distance < 200) {
           const intensity = 1 - (distance / 200);
           floatY = (distanceY / rect.height) * config.floatIntensity * intensity;
         }
-
-        // Hover effects
         if (cardData.isHovered) {
           scale = 1.05;
           brightness = 1.2;
           floatY *= 1.5;
         }
-
-        // Scroll effects
         if (config.enableScrollEffects && isScrolling) {
           floatY += (scrollOffset / 1000) * 10;
         }
 
-        // Apply transformations
         card.style.setProperty('--card-float-y', `${floatY}px`);
         card.style.setProperty('--card-scale', scale);
         card.style.setProperty('--card-brightness', brightness);
         card.style.setProperty('--card-blur', `${blur}px`);
 
-        // Store values
         cardData.floatY = floatY;
         cardData.scale = scale;
         cardData.brightness = brightness;
@@ -1328,58 +1218,44 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Animation loop
   function startAnimationLoop() {
     function animate() {
       updateCardPositions();
       requestAnimationFrame(animate);
     }
-
     animate();
   }
 
-  // Initialize when DOM is loaded
   document.addEventListener('DOMContentLoaded', init);
 
-  // Public API
   window.cardMotion = {
-    updateConfig: (newConfig) => {
-      Object.assign(config, newConfig);
-    },
+    updateConfig: (newConfig) => { Object.assign(config, newConfig); },
     enableEffects: (enable) => {
       config.enableMouseEffects = enable;
       config.enableScrollEffects = enable;
-      if (mouseFollower) {
-        mouseFollower.style.display = enable ? 'block' : 'none';
-      }
+      if (mouseFollower) mouseFollower.style.display = enable ? 'block' : 'none';
     },
-    getCardState: (cardElement) => {
-      return cards.find(c => c.element === cardElement);
-    }
+    getCardState: (cardElement) => cards.find(c => c.element === cardElement)
   };
 })();
+
 
 // =========================
 // SCROLL TRIGGER FOR CARD ANIMATIONS
 // =========================
-
 (function initCardScrollAnimations() {
-  // Intersection Observer for cards
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Animate the entire grid
         const grid = entry.target;
         grid.classList.add('animate-in');
 
-        // Animate individual cards
         const cards = grid.querySelectorAll('.featureCard, .infraCard');
         cards.forEach((card, index) => {
           card.style.animationDelay = `${index * 0.1}s`;
           card.style.animationPlayState = 'running';
         });
 
-        // Animate text
         const textElements = grid.parentElement.querySelectorAll('.scroll-text-reveal');
         textElements.forEach((text, index) => {
           setTimeout(() => {
@@ -1393,7 +1269,6 @@ document.addEventListener('DOMContentLoaded', function () {
     rootMargin: '0px 0px -100px 0px'
   });
 
-  // Observe card grids
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.scroll-cards-grid').forEach(grid => {
       observer.observe(grid);
