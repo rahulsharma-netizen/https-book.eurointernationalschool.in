@@ -795,6 +795,10 @@ document.addEventListener('DOMContentLoaded', function () {
       const success = await submitToGoogleSheets(formData);
 
       if (success) {
+        // Fire Google Ads conversion on successful submission
+        if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
+        // Fire Meta Pixel Lead conversion
+        if (typeof fbq === 'function') fbq('track', 'Lead');
         window.showPopup?.({
           type: "success",
           title: "Thank you!",
@@ -849,6 +853,10 @@ document.addEventListener('DOMContentLoaded', function () {
       const success = await submitToGoogleSheets(formData);
 
       if (success) {
+        // Fire Google Ads conversion on successful submission
+        if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
+        // Fire Meta Pixel Lead conversion
+        if (typeof fbq === 'function') fbq('track', 'Lead');
         window.showPopup?.({
           type: "success",
           title: "Thank you!",
